@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="templates/master.xhtml">
+            <ui:define name="content">
+                <div id="editComment">
+                    <h:form>
+                        <c:forEach var="errorMsg" items="#{commentMB.errorMsg}">
+                            <h:outputText style="color:red" value="#{errorMsg}"/>
+                        </c:forEach>
+                        <div>
+                            <h:inputText a:placeholder="Write title here" size="30" value="#{commentMB.comment.title}"/><br/><br/>
+                            <h:inputTextarea  id="reviewField" a:placeholder="Write your comment here" onkeyup="initSubmit()" cols="100" rows="8" value="#{commentMB.comment.content}"/>
+                        </div>
+                        <div>
+                            <p:commandButton action="#{commentMB.updateReview()}" value="submit" ajax="false"/>
+                        </div>
+                    </h:form>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

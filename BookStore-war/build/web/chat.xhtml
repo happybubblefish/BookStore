@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+
+    <h:head>
+        <title>Chat test!</title>
+    </h:head>
+    
+    <h:body>
+        <ui:composition template="templates/master.xhtml">
+            <ui:define name="content">
+                <div id="chatForm">
+                    <h:form prependId="false">
+                        <h:panelGrid columns="3">
+                            <h:outputText value="Name: "/>
+                            <p:inputText id="username" value="#{messageBean.message.user}" required="true" requiredMessage="Username is required."/>
+                            <h:message for="username" style="color: red"/>
+
+                            <h:outputText value="Text: "/>
+                            <p:inputText id="text" value="#{messageBean.message.message}" required="true" requiredMessage="Username is required."/>
+                            <h:message for="text" style="color: red"/>
+                        <p:commandButton type="reset" value="Clear"/>
+                        <p:commandButton value="Send!" actionListener="#{messageBean.sendMessage}"/>
+                        
+                        </h:panelGrid>
+                        <p:remoteCommand name="nextMessage" actionListener="#{messageBean.firstUnreadMessage}"
+                                         oncomplete="updateMessages(xhr, status, args);"/>
+                        
+                        <p:commandButton value="Home!" action="index"/>
+                        
+                    </h:form>
+                    <hr/>
+                    <h3>Live chat</h3>
+                    <div id="chat"></div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+
+</html>

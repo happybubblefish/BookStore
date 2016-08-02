@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="templates/master.xhtml">
+            <ui:define name="content">
+                <p:dataTable id="tbl" var="p" value="#{personMB.findAllPersons()}"
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                             paginator="true" rows="10" style="margin-bottom:20px">
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Id" />
+                        </f:facet>
+                        <h:outputText value="#{p.pid}" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Email"/>
+                        </f:facet>
+                        <h:outputText value="#{p.email}" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">DOB</f:facet>
+                        <h:outputText value="#{p.DOB}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="First name" />
+                        </f:facet>
+                        <h:outputText value="#{p.fname}" />
+                    </p:column>   
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Last name" />
+                        </f:facet>
+                        <h:outputText value="#{p.lname}" />
+                    </p:column> 
+
+                    <p:column>
+                        <f:facet name="header">Role</f:facet>
+                        <h:outputText value="#{personMB.getRole(p.roleId)}"></h:outputText>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Status</f:facet>
+                        <h:outputText value="#{p.status}"></h:outputText>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Edit</f:facet>
+                        <h:form>
+                            <h:commandLink value="Edit" action="#{personMB.preEdit(p)}"/>
+                        </h:form>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Delete</f:facet>
+                        <h:form>
+                            <h:commandLink value="Delete" action="#{personMB.delete(p)}" onclick="return confirm('Are you sure to delete this person?')"/>
+                        </h:form>
+                    </p:column>
+                </p:dataTable>
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

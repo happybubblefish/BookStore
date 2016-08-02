@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="templates/master.xhtml">
+            <ui:define name="content">
+                <p:dataTable id="tbl" var="bk" value="#{orderMB.booksList}"
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                             paginator="true" rows="10" style="margin-bottom:20px">
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Book ISBN" />
+                        </f:facet>
+                        <h:outputText value="#{bk.ISBN}" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Book title"/>
+                        </f:facet>
+                        <h:outputText value="#{bk.title}" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Unit price" />
+                        </f:facet>
+                        <h:outputText value="$#{bk.price}" />
+                    </p:column>  
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Count" />
+                        </f:facet>
+                        <h:outputText value="#{orderMB.getOrderedCount(bk)}" />
+                    </p:column> 
+
+                    <p:column>
+                        <f:facet name="header">Remove</f:facet>
+                        <h:form>
+                            <h:commandLink value="Remove" action="#{orderMB.delete(bk)}" onclick="return confirm('Are you sure to delete this book?')"/>
+                        </h:form>
+                    </p:column>
+                </p:dataTable>
+                <h:outputText value="$#{orderMB.totalPrice}" />
+                <h:form>
+                    <ui:fragment rendered="#{sessionScope.user.roleId != 1}">
+                        <p:commandButton action="#{orderMB.continueShopping()}" value="Continue shopping" ajax="false"/>
+                        <p:commandButton action="#{orderMB.placeOrder()}" value="Place order" ajax="false"/>
+                    </ui:fragment>
+                    <p:commandButton action="#{orderMB.clearAll()}" value="Clear all" ajax="false"/>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

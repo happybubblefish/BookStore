@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="master.xhtml">
+            <ui:define name="content">
+
+                <div id="listSideBar">
+                </div>
+                <div id="contentList">
+                    <h2 style="text-align:center">Comments</h2>
+                    <c:forEach var="comment" items="#{commentMB.filteredComments}">
+                        <span id="cmtTitle" style="font-weight:bold">#{commentMB.getBookTitleByCid(comment.bid)}</span><br/>
+                        #{comment.title}<br/>
+                        On #{comment.publishDate.toLocaleString()}<br/>
+                        #{comment.content}<br/><br/>
+                    </c:forEach>
+                    <!--<h:form id="form1">-->
+                    <div>
+                        <input type="button" value="Write a customer comment" onclick="writeReview()"/><br/><br/>
+                        <c:forEach var="errorMsg" items="#{commentMB.errorMsg}">
+                            <h:outputText class="errorMsg" value="#{errorMsg}"/>
+                        </c:forEach>
+                    </div>
+                    <h:form id="form1">
+                        <div id="addReviewDiv">
+                            <h:inputText a:placeholder="Write title here" size="30" value="#{commentMB.comment.title}"/><br/><br/>
+                            <h:inputTextarea  id="reviewField" a:placeholder="Write your comment here" onkeyup="initSubmit()" cols="100" rows="8" value="#{commentMB.comment.content}"/>
+                        </div>
+
+                        <div id="submitDiv">
+                            <p:commandButton action="#{commentMB.save(commentMB.comment)}" value="submit" ajax="false"/>
+                        </div>
+                        <div id="addCommentBackToList">
+                            <p:commandButton action="#{orderMB.continueShopping()}" value="Back to book list" ajax="false"/>
+                        </div>
+                    </h:form>
+                    <!--</h:form>-->
+
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

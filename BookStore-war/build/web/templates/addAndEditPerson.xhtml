@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="master.xhtml">
+            <ui:define name="content">
+                <div id="addPerson">
+                    <h:form>
+                        <h:panelGrid columns="3">
+                            <p:outputLabel value="Email"/>
+                            <p:inputText id="email" value="#{personMB.person.email}" validator="#{uniqueEmailValidator.validate}" required="true" requiredMessage="Email field is required">
+
+                            </p:inputText>
+                            <p:message for="email" style="color: red"/>
+
+                            <ui:insert name="password"></ui:insert>
+                               
+                            <p:outputLabel value="First name"/>
+                            <p:inputText id="fname" value="#{personMB.person.fname}" required="true" requiredMessage="First name field is required">
+                            </p:inputText>
+                            <p:message for="fname" style="color: red"/>
+
+                            <p:outputLabel value="Last name"/>
+                            <p:inputText id="lname" value="#{personMB.person.lname}" required="true" requiredMessage="Last name field is required">
+                            </p:inputText>
+                            <p:message for="lname" style="color: red"/>
+
+                            <p:outputLabel value="Gender"/>
+                            <p:selectOneRadio id="gender" value="#{personMB.person.gender}">
+                                <f:selectItem itemValue="male" itemLabel="male"/>
+                                <f:selectItem itemValue="female" itemLabel="female"/>
+                            </p:selectOneRadio>
+                            <p:message for="gender" style="color: red"/>
+
+                            <p:outputLabel value="Phone"/>
+                            <p:inputText id="phone" value="#{personMB.person.phone}" required="true" requiredMessage="Phone field is required">
+
+                            </p:inputText>
+                            <p:message for="phone" style="color: red"/>
+
+                            <p:outputLabel value="DOB"/>
+                            <p:calendar id="dob" value="#{personMB.person.DOB}" required="true" requiredMessage="DOB field is required"/>
+                            <p:message for="dob" style="color: red"/>
+
+                        </h:panelGrid>
+
+                        <ui:insert name="personButton"></ui:insert>
+
+                    </h:form>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

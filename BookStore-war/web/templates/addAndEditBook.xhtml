@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="master.xhtml">
+            <ui:define name="content">
+                <div id="addBook">
+                    <h:form enctype="multipart/form-data">
+                        <!--long bid, String ISBN, String title, int year, long authorId, long cgId, int stockCount, Date importDate, double price, String imageName, List<Comment> commentList, boolean status-->
+                        <h:panelGrid columns="3">
+                            <ui:insert name="bookId"></ui:insert>
+
+                            <p:outputLabel value="ISBN"/>
+                            <p:inputText id="isbn" value="#{bookMB.book.ISBN}" required="true" requiredMessage="ISBN field is required"/>
+
+                            <p:message for="isbn" style="color: red"/>
+
+                            <p:outputLabel value="Title"/>
+                            <p:inputText id="title" value="#{bookMB.book.title}" required="true" requiredMessage="Title field is required">
+
+                            </p:inputText>
+                            <p:message for="title" style="color: red"/>
+
+                            <p:outputLabel value="Year"/>
+                            <p:inputText id="year" value="#{bookMB.book.year}" required="true" requiredMessage="Year field is required">
+
+                            </p:inputText>
+                            <p:message for="year" style="color: red"/>
+
+                            <p:outputLabel value="Category"/>
+                            <p:selectOneMenu id="category" value="#{bookMB.book.cgId}" >
+                                <f:selectItems value="#{bookMB.categories}" var="category" itemLabel="#{category.cgName}" itemValue="#{category.cgId}" />
+                            </p:selectOneMenu>
+                            <p:message for="category" style="color: red"/>
+
+                            <p:outputLabel value="Price"/>
+                            <p:inputText id="price" value="#{bookMB.book.price}" required="true" requiredMessage="Price field is required">
+
+                            </p:inputText>
+                            <p:message for="price" style="color: red"/>
+
+                            <p:outputLabel value="Import date"/>
+                            <p:calendar id="importDate" value="#{bookMB.book.importDate}" required="true" requiredMessage="Import date field is required"/>
+                            <p:message for="importDate" style="color: red"/>
+
+                            <p:outputLabel value="StockCount"/>
+                            <p:inputText id="stockCount" value="#{bookMB.book.stockCount}" required="true" requiredMessage="Stock count field is required">
+                                
+                            </p:inputText>
+                            <p:message for="stockCount" style="color: red"/>
+                            
+                            <p:outputLabel value="Image"/>
+                            <p:fileUpload id="image" value="#{bookMB.uploadedFile}" mode="advanced" fileUploadListener="#{bookMB.fileUploadListener}"/>
+                            <p:message for="image" style="color: red"/>
+
+                            <p:outputLabel value="Author first name"/>
+                            <p:inputText id="auFname" value="#{bookMB.getAuthorByBookId(bookMB.book.bid).fname}" required="true" requiredMessage="Author first name field is required">
+
+                            </p:inputText>
+                            <p:message for="auFname" style="color: red"/>
+
+                            <p:outputLabel value="Author last name"/>
+                            <p:inputText id="auLname" value="#{bookMB.getAuthorByBookId(bookMB.book.bid).lname}" required="true" requiredMessage="Author last name field is required">
+
+                            </p:inputText>
+                            <p:message for="auLname" style="color: red"/>
+
+
+
+                            <p:outputLabel value="Author biography"/>
+                            <p:inputText id="auBiography" value="#{bookMB.getAuthorByBookId(bookMB.book.bid).biography}" required="true" requiredMessage="Author biography field is required">
+
+                            </p:inputText>
+                            <p:message for="auBiography" style="color: red"/>
+
+                            <p:outputLabel value="Author DOB"/>
+                            <p:calendar id="dob" value="#{bookMB.getAuthorByBookId(bookMB.book.bid).DOB}" required="true" requiredMessage="Author DOB field is required"/>
+                            <p:message for="dob" style="color: red"/>
+                        </h:panelGrid>
+                        <!--long auId, String fname, String lname, Date DOB, String biography, List<Integer> publishedBooks, boolean status-->
+                        <ui:insert name="button"></ui:insert>
+                    </h:form>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

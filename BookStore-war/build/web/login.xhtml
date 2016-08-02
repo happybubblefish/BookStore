@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="templates/master.xhtml">
+            <ui:define name="content">
+                <div id="login">
+                    <h2>Please log in to continue</h2>
+                    <h:form>
+                        <h:panelGrid columns="3" cellpadding="2" cellspacing="2">
+                            <p:outputLabel value="Username"/>
+                            <p:inputText value="#{loginMB.username}" style="height: 35px" id="username" required="true" requiredMessage="Username must be entered"/>
+                            <p:message style="color: red" for="username"/>
+                            <p:outputLabel value="Password"/>
+                            <p:password  value="#{loginMB.password}" style="height: 35px" id="password" required="true" requiredMessage="Password must be entered"/>
+                            <p:message style="color: red" for="password"/>
+                            <p:outputLabel/>
+                            <p:commandButton action="#{loginMB.login(loginMB.username, loginMB.password)}" value="Login" ajax="false"/>
+                        </h:panelGrid>
+                        <p style="color: red">#{sessionScope.error}</p>
+                    </h:form>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

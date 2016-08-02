@@ -1,0 +1,346 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 15, 2016, 4:15:51 PM
+    Author     : Lin
+*/
+
+body{
+    font-family: Verdana, Tahoma, sans-serif;
+    font-size: 12pt;  
+    padding: 0px;
+    margin: 0px;
+}
+
+#container{
+    position: relative;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+#mainImg{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../resources/images/bg3.jpg);
+    background-size: cover;
+    background-attachment: scroll;
+    background-position: center;
+    opacity: 0.8;
+    height:85vh;
+}
+
+#words{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+}
+
+#slogan{
+    font-size: 130%;
+    color: white;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px #000000;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+}
+
+.myBtn{
+    display: inline-block;
+    text-decoration: none;
+    text-shadow: 1px 1px 4px #000000;
+    font-size: 100%;
+}
+
+.enterBtn{
+    margin-top: 15px;
+    border: 1px #f39c12 solid;
+    padding: 10px 30px;
+    background-color: #4CAF50;
+    border-radius: 50px;
+    color: #fff;
+}
+
+.enterBtn:hover{
+    background-color: #326733;
+    transition: background-color 0.2s;
+}
+
+.navbar{
+    margin-bottom: 0px;
+}
+
+#media{
+    list-style-type: none;
+    margin-top: 10px;
+    margin-right: 50px;
+    /*width: 200px;*/
+}
+
+#media li{
+    float: right;
+    padding: 5px;
+}
+
+#media li:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.contact li{
+    list-style-type: none;
+    float: left;
+    margin-left: 220px;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.navbar-text{
+    margin-bottom: 0px;
+}
+
+.userCount{
+    float: left;
+    margin-top: 10px;
+    margin-left: 30px;
+    margin-bottom: 0px;
+}
+
+.copyRight{
+    clear: both;
+    padding-left: 700px;
+    margin-bottom: 5px;
+}
+
+.userCount, .copyRight{
+     font-size: 10px;
+}
+
+#listOut{
+    height: 70vh;
+}
+
+#login, #addBook, #addPerson, #bookDetails, #personDetails, #exception, #errorPage, #unauthorize, #orderConfirmation{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+}
+
+#chatForm{
+   position: absolute;
+    top:25%;
+    left:50%;
+    transform: translate(-50%, -50%); 
+}
+
+
+.social {
+    margin: 0;
+    padding-top: 5px;
+}
+
+.social ul {
+    margin: 0;
+    /*padding: 5px;*/
+    width: 500px;
+    float: right;
+    padding-left: 190px;
+}
+
+.social ul li {
+    margin: 5px;
+    list-style: none outside none;
+    display: inline-block;
+}
+
+.social i {
+    width: 25px;
+    height: 25px;
+    color: #FFF;
+    background-color: #909AA0;
+    font-size: 14px;
+    text-align:center;
+    padding-top: 8px;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -o-border-radius: 50%;
+    transition: all ease 0.3s;
+    -moz-transition: all ease 0.3s;
+    -webkit-transition: all ease 0.3s;
+    -o-transition: all ease 0.3s;
+    -ms-transition: all ease 0.3s;
+}
+
+.social i:hover {
+    color: #FFF;
+    text-decoration: none;
+    transition: all ease 0.3s;
+    -moz-transition: all ease 0.3s;
+    -webkit-transition: all ease 0.3s;
+    -o-transition: all ease 0.3s;
+    -ms-transition: all ease 0.3s;
+}
+
+.social .fa-facebook:hover { /* round facebook icon*/
+    background: #4060A5;
+}
+
+.social .fa-twitter:hover { /* round twitter icon*/
+    background: #00ABE3;
+}
+
+.social .fa-google-plus:hover { /* round google plus icon*/
+    background: #e64522;
+}
+
+.social .fa-github:hover { /* round github icon*/
+    background: #343434;
+}
+
+.social .fa-pinterest:hover { /* round pinterest icon*/
+    background: #cb2027;
+}
+
+.social .fa-linkedin:hover { /* round linkedin icon*/
+    background: #0094BC;
+}
+
+.social .fa-flickr:hover { /* round flickr icon*/
+    background: #FF57AE;
+}
+
+.social .fa-instagram:hover { /* round instagram icon*/
+    background: #375989;
+}
+
+.social .fa-vimeo-square:hover { /* round vimeo square icon*/
+    background: #83DAEB;
+}
+
+.social .fa-stack-overflow:hover { /* round stack overflow icon*/
+    background: #FEA501;
+}
+
+.social .fa-dropbox:hover { /* round dropbox icon*/
+    background: #017FE5;
+}
+
+.social .fa-tumblr:hover { /* round tumblr icon*/
+    background: #3a5876;
+}
+
+.social .fa-dribbble:hover { /* round dribble icon*/
+    background: #F46899;
+}
+
+.social .fa-skype:hover { /* round skype icon*/
+    background: #00C6FF;
+}
+
+.social .fa-stack-exchange:hover { /* round stack exchange icon*/
+    background: #4D86C9;
+}
+
+.social .fa-youtube:hover { /* round youtube icon*/
+    background: #FF1F25;
+}
+
+.social .fa-xing:hover { /* round xing icon*/
+    background: #005C5E;
+}
+
+.social .fa-rss:hover { /* round rss icon*/
+    background: #e88845;
+}
+
+.social .fa-foursquare:hover { /* round foursquare icon*/
+    background: #09B9E0;
+}
+
+.social .fa-youtube-play:hover { /* round youtube play button icon*/
+    background: #DF192A;
+}
+
+
+/*#login{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../resources/images/bg3.jpg);
+    background-size: cover;
+    background-attachment: scroll;
+    background-position: center;
+    opacity: 0.8;
+    height: 85vh;
+}*/
+
+
+/*#slogan{
+    font-size: 300%;
+    color: white;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px #000000;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+}
+
+.btn{
+    display: inline-block;
+    text-decoration: none;
+    text-shadow: 1px 1px 4px #000000;
+    font-size: 150%;
+}
+
+.enterBtn{
+    margin-top: 15px;
+    border: 1px #f39c12 solid;
+    padding: 10px 30px;
+    background-color: #4CAF50;
+    border-radius: 50px;
+    color: #fff;
+}
+
+.enterBtn:hover{
+    background-color: #326733;
+    transition: background-color 0.2s;
+}
+*/
+
+#contentList, #commentList, #editComment{
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-bottom: 90px;
+}
+
+#submitDiv{
+    float: left;
+    width: 100px;
+}
+
+#resultWeatherDiv{
+    background-color: white;
+    width: 130px;
+    opacity: 0.5;
+}
+
+#weather{
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+#contactPage{
+    margin-left: 50px;
+}
+
+#contactInfo{
+    margin-bottom: 100px;
+}
+
+#cmtTitle{
+    font-weight:bold;
+}
+.errorMsg{
+    color:red;
+}

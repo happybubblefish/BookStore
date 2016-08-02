@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="templates/master.xhtml">
+            <ui:define name="content">
+                <div id="view">
+                    <p:layout>
+                        <p:layoutUnit position="west" size="200">
+                            <div id="listSideBar">
+                                <h:form id="form1">
+                                    <p:selectManyCheckbox id="grid" value="#{bookMB.selectedPrices}" layout="grid" columns="1">
+                                        <f:selectItems value="#{bookMB.prices}" var="price" itemLabel="#{price}" itemValue="#{price}" />
+                                        <p:ajax update=":listOut" listener="#{bookMB.handlePricesChange}" />
+                                    </p:selectManyCheckbox>
+                                    <hr/>
+
+                                    <p:selectManyCheckbox id="grid2" value="#{bookMB.selectedCategories}" layout="grid" columns="1">
+                                        <f:selectItems value="#{bookMB.categories}" var="category" itemLabel="#{category.cgName}" itemValue="#{category.cgName}" />
+                                        <p:ajax update=":listOut" listener="#{bookMB.handleCategoryChange}" />
+                                    </p:selectManyCheckbox>
+
+                                    <p:outputLabel for="country" value="Sort by price: " />
+                                    <p:selectOneMenu id="country" value="#{bookMB.sortByPrice}" style="width:150px">
+                                        <p:ajax listener="#{bookMB.handleSortByPrice}" update=":listOut" />
+                                        <f:selectItem itemLabel="Select sort type" itemValue="" noSelectionOption="true" />
+                                        <f:selectItems value="#{bookMB.sortByPriceTypes}" />
+                                    </p:selectOneMenu>
+                                </h:form>
+                            </div>
+                        </p:layoutUnit>
+
+                        <p:layoutUnit position="center" >
+                            <p:dataGrid id="listOut" var="bk" value="#{bookMB.filteredBooks}" columns="6" 
+                                        rows="12" paginator="true"
+                                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                        rowsPerPageTemplate="6,12,16">
+                                <h:panelGrid columns="1" style="text-align: center">
+                                    <f:facet name="header">
+                                        <h:form>
+                                            <h:commandLink action="#{bookMB.goToDetail(bk)}">
+                                                <p:graphicImage library="images" name="#{bk.imageName}.jpg" width="180px" height="240px"/>
+                                            </h:commandLink>
+                                        </h:form>
+                                    </f:facet>
+
+                                    <h:outputText value="$#{bk.price}" />
+
+                                    <h:form>
+                                        <p:commandLink action="#{commentMB.findAllComments(bk)}" value="Comments:#{commentMB.getCommentsCount(bk)}"/>
+                                        <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+                                    </h:form>
+
+                                    <ui:fragment rendered="#{sessionScope.user.roleId != 1}">
+                                        <h:form>
+                                            <p:commandButton value="Add to cart" action="#{orderMB.addToCart(bk, 1)}" ajax="false"/>
+                                        </h:form>
+                                    </ui:fragment>
+                                </h:panelGrid>
+                            </p:dataGrid>
+                        </p:layoutUnit>
+                    </p:layout>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

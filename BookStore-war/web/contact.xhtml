@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:view>
+        <h:head>
+            <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+        </h:head>
+
+        <h:body>
+            <ui:composition template="templates/master.xhtml">
+                <ui:define name="content">
+                    <div id="contactPage">
+                        <h3>Where To Find Us</h3>
+                        <p:gmap center="36.890257,30.707417" zoom="13" type="HYBRID" style="width:70%;height:400px" model="#{markersView.simpleModel}" />
+                        <h3>Enjoy the music! </h3>
+                        <p:media value="http://www.stephaniequinn.com/Music/Mozart%20-%20Presto.mp3" player="quicktime">
+                            <f:param name="autoPlay" value="false" />
+                        </p:media>
+                        <p:imageSwitch effect="fade" id="fadeEffect">
+                            <ui:repeat value="#{ContactMB.images}" var="image" id="fadeEffectImages">
+                                <p:graphicImage library="images" name="#{images}" id="image" />
+                            </ui:repeat>
+                        </p:imageSwitch>
+                        <div id="contactInfo">
+                            <h3>Create by:</h3>
+                            <p>Cong Lin:   <a href="mailto:congls2007@yahoo.com">Send email</a></p>
+                            <p>Sitra Sultan:    <a href="mailto:Citysul12@gmail.com">Send email</a></p>
+                            <p>Cong Ma:    <a href="mailto:cong.ma1991@hotmail.com">Send email</a></p>
+                            <p>Xutian Sima:    <a href="mailto:xutian.sm@hotmail.com">Send email</a></p>
+
+                        </div> 
+                    </div>
+                </ui:define>
+            </ui:composition>
+        </h:body>
+    </f:view>
+</html>

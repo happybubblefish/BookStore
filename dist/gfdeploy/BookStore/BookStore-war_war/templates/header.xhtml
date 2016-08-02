@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition>
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a  href="login.jsf">
+                            <h:graphicImage id="brandImg" library="images" name="logoM.jpg"/>
+                        </a>
+                        <span>#{msgs.slogan}</span>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <h:form class="navbar-form navbar-left" role="search">
+                                <ui:fragment rendered="#{sessionScope.user.roleId == 1}">
+                                    <h:commandLink action="viewPersons.jsf" value="View all users"/>&nbsp;&nbsp;
+                                    <h:commandLink action="#{bookMB.addBookPage()}" value="Add new book"/>&nbsp;&nbsp;
+                                </ui:fragment>
+
+                                <ui:fragment rendered="#{!sessionScope.user.isLoggedIn}">
+                                    <h:link outcome="login.jsf" value="Login"/>&nbsp;&nbsp;
+                                    <h:link outcome="register.jsf" value="Register"/>
+                                </ui:fragment>&nbsp;&nbsp;&nbsp;
+
+                                <h:inputText value="#{bookMB.searchValue}" class="form-control" />&nbsp;
+                                <h:commandButton value="GO" action="#{bookMB.searchBook()}" class="btn btn-default"/>
+                                &nbsp;&nbsp;&nbsp;
+                                <ui:fragment rendered="#{sessionScope.user.roleId == 2}">
+                                    <h:commandLink action="#{orderMB.goToCart()}" value="Cart">
+                                        <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                                    </h:commandLink>&nbsp;&nbsp;&nbsp;
+                                </ui:fragment>
+                                <ui:fragment rendered="#{sessionScope.user.isLoggedIn}">
+                                    <h:commandLink action="#{personMB.goToPersonDetails(sessionScope.user)}" value="#{sessionScope.user.fname}, #{sessionScope.user.lname}"/>&nbsp;&nbsp;
+                                </ui:fragment>
+                                <ui:fragment rendered="#{sessionScope.user.isLoggedIn}">
+                                    <h:commandLink action="#{loginMB.logout()}" value="Logout"/>&nbsp;&nbsp;
+                                </ui:fragment>
+                                <ui:fragment rendered="#{!sessionScope.user.isLoggedIn}">
+
+                                    <!--<h:form>-->
+                                    <h:commandLink action="chat.jsf">
+                                        <i class="fa fa-weixin" aria-hidden="true"></i>
+                                    </h:commandLink>
+                                    <!--</h:form>-->                
+                                </ui:fragment>
+                            </h:form>
+                            <!--<li><a href="#">Link</a></li>-->
+                            <!--                            <li class="dropdown">
+                                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>-->
+                            <!--                                <ul class="dropdown-menu">
+                                                                <li><a href="#">Action</a></li>
+                                                                <li><a href="#">Another action</a></li>
+                                                                <li><a href="#">Something else here</a></li>
+                                                                <li role="separator" class="divider"></li>
+                                                                <li><a href="#">Separated link</a></li>
+                                                            </ul>-->
+
+                            <!--</li>-->
+
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+
+
+        </ui:composition>
+    </h:body>
+</html>
+

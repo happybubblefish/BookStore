@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+
+    </h:head>
+    <h:body>
+        <ui:composition template="templates/master.xhtml">
+            <ui:define name="content">
+                <div id="container">
+                    <div id="mainImg">
+
+                        <div id="words">                                
+                            <h:outputText id="slogan" value="#{msgs.slogan}"/>
+                            <br/>
+                            <h:form>
+                                <h:commandLink styleClass="myBtn enterBtn" action="#{bookMB.findAllBooks()}" value="Explore">
+                                </h:commandLink>
+                            </h:form>
+
+                        </div>
+
+                        <div id="weather">
+                            <table>
+                                <tr>
+                                    <td><p:outputLabel value="City" style="color: white"/></td>
+                                    <td><p:inputText id="txtCity" size="10"/></td>
+                                    <td><p:commandButton id="btnGetWeather" value="Search"/></td>
+                                </tr>
+                            </table>
+
+                            <br/>
+                            <div id="resultWeatherDiv"></div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>
+

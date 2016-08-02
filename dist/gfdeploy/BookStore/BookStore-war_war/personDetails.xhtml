@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="templates/master.xhtml">
+            <ui:define name="content">
+                <div id="personDetails">
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Id"/>
+                        <h:outputLabel id="id" value="#{personMB.person.pid}"/>
+
+                        <h:outputLabel value="First name"/>
+                        <h:outputLabel id="fname" value="#{personMB.person.fname}"/>
+
+                        <h:outputLabel value="Last name"/>
+                        <h:outputLabel id="lname" value="#{personMB.person.lname}"/>
+
+                        <h:outputLabel value="DOB"/>
+                        <h:outputLabel id="dob" value="#{personMB.person.DOB}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputLabel>
+
+                        <h:outputLabel value="Email"/>
+                        <h:outputLabel id="email" value="#{personMB.person.email}"/>
+
+                        <h:outputLabel value="Phone"/>
+                        <h:outputLabel id="phone" value="#{personMB.person.phone}"/>
+
+                        <h:outputLabel value="Gender"/>
+                        <h:outputLabel id="gender" value="#{personMB.person.gender}"/>
+
+                        <h:outputLabel value="Role"/>
+                        <h:outputLabel id="role" value="#{personMB.getRole(personMB.person.roleId)}"/>
+
+                        <h:form>
+                            <p:commandButton value="Edit profiles" action="#{personMB.preEdit(personMB.person)}" ajax="false"/>
+                            <ui:fragment rendered="#{sessionScope.user.roleId != 1}">
+                                <p:commandButton value="Check past orders" action="#{personMB.listPastOrders(personMB.person)}" ajax="false"/>
+                                <p:commandButton action="#{orderMB.continueShopping()}" value="Back to book list" ajax="false"/>
+                            </ui:fragment>
+                            <ui:fragment rendered="#{sessionScope.user.roleId == 1}">
+                                <p:commandButton action="#{personMB.updateCancel()}" value="Cancel" ajax="false" immediate="true"/>
+                            </ui:fragment>
+                        </h:form>
+                    </h:panelGrid>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
